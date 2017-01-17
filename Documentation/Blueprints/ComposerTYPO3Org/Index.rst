@@ -1,19 +1,13 @@
-    1 Blueprint: composer.typo3.org
-        1.1 Goals / Motivation
-        1.2 Concept
-        1.3 Implementation Details
-        1.4 Q & A
-        1.5 Risks / Problems / Questions
-        1.6 Issues and reviews
-        1.7 External links for clarification of technologies
-
+=============================
 Blueprint: composer.typo3.org
-Proposal 	Make composer.typo3.org future proof and TER obsolete
-Owner/Starter 	Alexander Schnitzler
-Participants/Members 	Helmut Hummel, Thomas Löffler
-Status 	To be worked on
-Current Progress 	30%
-Topic for Gerrit 	N/A
+=============================
+
+:Proposal: 	Make composer.typo3.org future proof and TER obsolete
+:Owner/Starter: 	Alexander Schnitzler
+:Participants/Members: 	Helmut Hummel, Thomas Löffler
+:Status: 	To be worked on
+:Current Progress: 	30%
+:Topic for Gerrit: 	N/A
 
 
 Goals / Motivation
