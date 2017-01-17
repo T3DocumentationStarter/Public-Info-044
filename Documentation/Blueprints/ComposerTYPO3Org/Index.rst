@@ -1,16 +1,19 @@
+.. include:: ../Includes.txt
+
 =============================
 Blueprint: composer.typo3.org
 =============================
 
-:Proposal: 	Make composer.typo3.org future proof and TER obsolete
-:Owner/Starter: 	Alexander Schnitzler
-:Participants/Members: 	Helmut Hummel, Thomas Löffler
-:Status: 	To be worked on
-:Current Progress: 	30%
-:Topic for Gerrit: 	N/A
+:Proposal: 	           Make composer.typo3.org future proof and TER obsolete
+:Owner/Starter: 	   Alexander Schnitzler
+:Team:                 Helmut Hummel, Thomas Löffler
+:Status:               To be worked on
+:Progress:             30%
+:Gerrit:               N/A
 
 
 Goals / Motivation
+==================
 
 At the moment the extension infrastructure of TYPO3 completely relies on the TER (TYPO3 extension repository), some kind of global directory with a soap api to release new extension versions. To be able to load ter extensions via composer, there currently is a service that fetches all ter extensions as xml (https://typo3.org/fileadmin/ter/extensions.xml.gz) and converts it to a packages.json, readable by composer. However, this is just a temporary solution.
 
@@ -23,34 +26,44 @@ Currently this is done by a script, already explained some lines ago. However, t
 
 What needs to be achieved is a solution where people don't necessarily need to upload their extension to the TER to be available on composer.typo3.org. composer.typo3.org should be a real git server with real git repositories and tags, just like packagist.org. Anyway, composer.typo3.org needs a compat layer like it currently has. So, in the end extension developers should have the following options to choose from:
 
-    Directly upload/maintain an extension on composer.typo3.org
-    Tell composer.typo3.org where to find a publicly available version of the extension, so the middleware can import it
-    Upload extensions to the TER, as usual and let the middleware import/convert the ext to a git repository
+- Directly upload/maintain an extension on composer.typo3.org
+- Tell composer.typo3.org where to find a publicly available version of the extension, so the middleware can import it
+- Upload extensions to the TER, as usual and let the middleware import/convert the ext to a git repository
 
 This way the dependency on ext_emconf.php is removed and people are encouraged to maintain their extensions like a classic composer package with a valid composer.json and the TER soap upload can get an expiry date.
 
-[UPDATE] I talked to Helmut Hummel and we found a better idea of improving the current situation even faster. Instead of adding a git server where we push automatically converted extensions to, we simply install satis and let it act as a proxy for the generated composer.json, built from the TER xml and extension repositories that are on github, bitbucket, git.typo3.org and so on. I also talked to Thomas Löffler and he will help adding a checkbox to the extension information on typo3.org, so people can choose to let composer.typo3.org fetch their extension code from github etc. instead of the uploaded TER codebase.
+**[UPDATE]** I talked to Helmut Hummel and we found a better idea of improving the current situation even faster. Instead of adding a git server where we push automatically converted extensions to, we simply install satis and let it act as a proxy for the generated composer.json, built from the TER xml and extension repositories that are on github, bitbucket, git.typo3.org and so on. I also talked to Thomas Löffler and he will help adding a checkbox to the extension information on typo3.org, so people can choose to let composer.typo3.org fetch their extension code from github etc. instead of the uploaded TER codebase.
 Implementation Details
 
 The server team needs to setup a git server, preferably atlassian stash. The middleware has to be created, that imports/converts extensions. The TER frontend (ter.typo3.org) needs to grab it's data from the git server, instead of it's own data.
+
 Q & A
+=====
 
 Q: Why not simply use packagist.org for all typo3 extension?
 
 A: Because packagist is meant to be a repository for vanilla php packages and we don't want to flood packagist.org with several thousand typo3 extensions, especially not with outdated ones. These packages would be limited for usage with TYPO3 and thus not beneficial for users of other frameworks/libraries/...
-Risks / Problems / Questions
 
-    What if an extension is already published on packagist.org?
+
+Risks / Problems / Questions
+============================
+
+- What if an extension is already published on packagist.org?
 
 Issues and reviews
+==================
 
-    https://forge.typo3.org/issues/68438
-    https://forge.typo3.org/issues/68439
+- https://forge.typo3.org/issues/68438
+- https://forge.typo3.org/issues/68439
+
 
 External links for clarification of technologies
+================================================
 
     https://github.com/composer/satis
 
-Category:
 
-    Blueprints
+Category:
+=========
+
+Blueprints
