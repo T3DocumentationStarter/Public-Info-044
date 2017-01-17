@@ -60,7 +60,7 @@ Issues and reviews
 External links for clarification of technologies
 ================================================
 
-    https://github.com/composer/satis
+- https://github.com/composer/satis
 
 
 Category:
